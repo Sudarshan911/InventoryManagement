@@ -24,6 +24,7 @@ app.listen(5000, () => {
 
 
 /* Inserts the product into the Inventory. */
+/* Sample body : [{"product":"AquaFina 20 ltr jar","InStock":30,"Warehouse":"mumbai-north"}] */
 app.post("/Inventory", (request, response) => {
 
     //Giving error response when body is empty
@@ -54,7 +55,9 @@ app.get("/Inventory", (request, response) => {
 });
 
 
-/* Changing the status of order to "cancelled". Increases the quantity of the product availaible after cancellation */
+/* Changing the status of order to "cancelled". Increases the quantity of the product availaible after cancellation
+Sample body : [{"customer_name":"suraj","product":"kinley 5 ltr Jar","quantity_requested":10,"status":"confirmed"}]
+*/
 app.put("/cancelorder", (request, response) => {
     //Giving error response when body is empty
     if (Object.keys(request.body).length == 0) {
@@ -105,7 +108,9 @@ app.get("/placeorder", (request, response) => {
 
 
 /* Places the order if the required quantity is less than or equal to the quantity availaible. 
-Deducts the respective quantity from the Inventory after order gets placed  */
+Deducts the respective quantity from the Inventory after order gets placed  
+Sample body : [{"customer_name":"suraj","product":"kinley 5 ltr Jar","quantity_requested":10,"status":"confirmed"}]
+*/
 app.post("/placeorder", (request, response) => {
     //Giving error response when body is empty
     if (Object.keys(request.body).length == 0) {
