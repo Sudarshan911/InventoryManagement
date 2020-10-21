@@ -120,7 +120,7 @@ app.post("/placeorder", (request, response) => {
         if (result[0].InStock >= request.body[0].quantity_requested) {
 
             //placing the order
-            database.collection("PlacedOrders").insert(request.body, (error, result1) => {
+            database.collection("PlacedOrders").insert(request.body, (error, res) => {
                 if (error) {
                     return response.status(500).send(error);
                 }
